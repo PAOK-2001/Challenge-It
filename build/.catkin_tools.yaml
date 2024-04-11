@@ -1,0 +1,6 @@
+devel_space: /home/pablo/Challenge-It/devel
+install: false
+install_space: /home/pablo/Challenge-It/install
+profile: default
+source_space: /home/pablo/Challenge-It/src
+workspace: /home/pablo/Challenge-It

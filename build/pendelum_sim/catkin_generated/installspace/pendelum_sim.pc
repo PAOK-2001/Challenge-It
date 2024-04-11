@@ -1,0 +1,8 @@
+prefix=/home/pablo/Challenge-It/install
+
+Name: pendelum_sim
+Description: Description of pendelum_sim
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
