@@ -9,13 +9,9 @@
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="pendelum_state_pub" >
     </node>
 
-    <!--Joint State Publisher --> <!--Uncomment for TESTING ONLY (COMMENT YOUR JOINT STATE PUBLISHER)-->    
-    <!--<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
-    </node>-->
-
     <arg name="rvizconfig" default="$(find pendelum_sim)/rviz/manipulator.rviz" />
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> 
-    <node name="pendulum" pkg="pendelum_sim" type="pendelum_sim.py" />
+    <node name="pendulum" pkg="pendelum_sim" type="pendelum_sim.py" output="screen"/>
 
 
 </launch>

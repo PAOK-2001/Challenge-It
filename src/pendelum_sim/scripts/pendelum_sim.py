@@ -8,11 +8,11 @@ from sensor_msgs.msg import JointState
 class PendulumSim():
     def __init__(self):
         #Ros Node
-        rospy.init_node("SLM_Sim", anonymous=False)
+        rospy.init_node("pendulum_sim", anonymous=False)
         self.rate = rospy.Rate(rospy.get_param("~node_rate",100))
         
         # Publisher
-        self.pendulum_pub = rospy.Publisher("/joint_states", JointState, queue_size= 10)
+        self.pendulum_pub = rospy.Publisher("/joint_states", JointState, queue_size= 1)
         
         # Subscriber
         self.tau_sub = rospy.Subscriber("/tau", Float32, self.update_tau)
@@ -27,8 +27,12 @@ class PendulumSim():
         # System variables
         self.tau = 0.0 # No force :)
         self.angular_speed = 0.0
+        self.angular_acceleration = 0.0
         self.output = JointState()
-        self.output.name = "joint2"
+        self.output.name = ["joint2"]
+        self.output.position = [0.0]
+        self.output.velocity = [0.0]
+        self.pendulum_pub.publish(self.output) # Initialize pendulum in sim
 
     def correct_reference(self,theta ):
         result = np.fmod((theta + np.pi),(2 * np.pi))
@@ -40,16 +44,21 @@ class PendulumSim():
         self.tau = msg.data
     
     def simulate_pendulum(self):
-        print("The Pendulum sim is Running")
+        rospy.loginfo("The Pendulum sim is Running")
         pendulum_angle = 0.0
         prev_time  = time.time()
         while not rospy.is_shutdown():
-            dt = prev_time - time.time()
-            self.angular_speed = 1/self.INERTIA*(self.tau - self.MASS*self.GRAVITY*self.LENGTH*np.cos(pendulum_angle)/2 - self.FRICTION*self.angular_speed)
+            dt = time.time() - prev_time
+            pendulum_angle = self.correct_reference(pendulum_angle)
+            self.angular_acceleration = 1/self.INERTIA*(self.tau - self.MASS*self.GRAVITY*self.LENGTH*np.cos(pendulum_angle)/2 - self.FRICTION*self.angular_speed)
+            self.angular_speed += self.angular_acceleration*dt
             pendulum_angle += self.angular_speed * dt
-            self.output.position = self.correct_reference(pendulum_angle)
+            self.output.position[0] = pendulum_angle
+            self.output.header.stamp = rospy.Time.now()
+            rospy.loginfo(f"Estimated {pendulum_angle}")
             self.pendulum_pub.publish(self.output)
             prev_time = time.time()
+            self.rate.sleep()
          
 if __name__=='__main__':
     pendulum_sim = PendulumSim()

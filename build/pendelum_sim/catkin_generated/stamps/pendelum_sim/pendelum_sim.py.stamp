@@ -8,7 +8,7 @@ from sensor_msgs.msg import JointState
 class PendulumSim():
     def __init__(self):
         #Ros Node
-        rospy.init_node("SLM_Sim", anonymous=False)
+        rospy.init_node("pendulum_sim", anonymous=False)
         self.rate = rospy.Rate(rospy.get_param("~node_rate",100))
         
         # Publisher
@@ -28,6 +28,9 @@ class PendulumSim():
         self.tau = 0.0 # No force :)
         self.angular_speed = 0.0
         self.output = JointState()
+        self.output.name = ["joint2"]
+        self.output.position = [0.0]
+        self.output.velocity = [0.0]
 
     def correct_reference(self,theta ):
         result = np.fmod((theta + np.pi),(2 * np.pi))
@@ -39,16 +42,18 @@ class PendulumSim():
         self.tau = msg.data
     
     def simulate_pendulum(self):
-        print("The Pendulum sim is Running")
+        rospy.loginfo("The Pendulum sim is Running")
         pendulum_angle = 0.0
         prev_time  = time.time()
         while not rospy.is_shutdown():
-            dt = prev_time - time.time()
+            dt = time.time() - prev_time
             self.angular_speed = 1/self.INERTIA*(self.tau - self.MASS*self.GRAVITY*self.LENGTH*np.cos(pendulum_angle)/2 - self.FRICTION*self.angular_speed)
             pendulum_angle += self.angular_speed * dt
-            self.output.position = self.correct_reference(pendulum_angle)
+            self.output.position[0] = self.correct_reference(pendulum_angle)
+            rospy.loginfo(f"Estimated {pendulum_angle}")
             self.pendulum_pub.publish(self.output)
             prev_time = time.time()
+            self.rate.sleep()
          
 if __name__=='__main__':
     pendulum_sim = PendulumSim()
