@@ -144,7 +144,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pendelum_sim" TYPE PROGRAM FILES "/home/pablo/Challenge-It/build/pendelum_sim/catkin_generated/installspace/slm_sim.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pendelum_sim" TYPE PROGRAM FILES "/home/pablo/Challenge-It/build/pendelum_sim/catkin_generated/installspace/pendelum_sim.py")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

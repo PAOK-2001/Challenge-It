@@ -15,6 +15,7 @@
 
     <arg name="rvizconfig" default="$(find pendelum_sim)/rviz/manipulator.rviz" />
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> 
+    <node name="pendulum" pkg="pendelum_sim" type="pendelum_sim.py" />
 
 
 </launch>
