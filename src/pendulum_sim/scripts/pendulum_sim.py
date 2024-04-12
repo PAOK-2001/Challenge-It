@@ -19,7 +19,7 @@ class PendulumSim():
 
         #Constants
         self.MASS    = 0.75 # kg
-        self.GRAVITY = 9.81 # m/s²
+        self.GRAVITY = 9.81 # m/s^2
         self.LENGTH  = 0.36 # length in meters 
         self.FRICTION =  0.01
         self.INERTIA = (4/3) * self.MASS * (self.LENGTH/2)**2
@@ -54,8 +54,8 @@ class PendulumSim():
             self.angular_speed += self.angular_acceleration*dt
             pendulum_angle += self.angular_speed * dt
             self.output.position[0] = pendulum_angle
+            self.output.velocity[0] = self.angular_speed
             self.output.header.stamp = rospy.Time.now()
-            rospy.loginfo(f"Estimated {pendulum_angle}")
             self.pendulum_pub.publish(self.output)
             prev_time = time.time()
             self.rate.sleep()

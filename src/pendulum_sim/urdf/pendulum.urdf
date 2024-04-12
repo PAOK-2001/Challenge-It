@@ -9,7 +9,7 @@
         <visual>
             <origin xyz="0.0 0.0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://pendelum_sim/models/Base_2.stl"/>
+                <mesh filename="package://pendulum_sim/models/Base_2.stl"/>
             </geometry>
             <material name="White">
                 <color rgba="0.97 0.97 0.97 1.0"/>
@@ -35,7 +35,7 @@
         <visual>
             <origin xyz="0.06 0.13 0.0" rpy="1.57 -1.57 0.0" />
             <geometry>
-                <mesh filename="package://pendelum_sim/models/Arm_2.stl"/>
+                <mesh filename="package://pendulum_sim/models/Arm_2.stl"/>
             </geometry>
             <material name="White">
                 <color rgba="0.97 0.97 0.97 1.0"/>

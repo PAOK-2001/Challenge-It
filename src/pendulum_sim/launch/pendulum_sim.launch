@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!--Load mesh model -->
+    <arg name="urdf_model" value="$(find pendulum_sim)/urdf/pendulum.urdf"/>
+    <param name="robot_description" command="cat $(arg urdf_model)" />
+
+    <!--Robot State Publisher -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="pendulum_state_pub" >
+    </node>
+
+    <node name="rqt_plot" pkg="rqt_plot" type="rqt_plot" args="/joint_states/position[0] /joint_states/velocity[0]" output="screen"/>
+
+    <arg name="rvizconfig" default="$(find pendulum_sim)/rviz/manipulator.rviz" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> 
+    <node name="pendulum" pkg="pendulum_sim" type="pendulum_sim.py" output="screen"/>
+
+
+</launch>

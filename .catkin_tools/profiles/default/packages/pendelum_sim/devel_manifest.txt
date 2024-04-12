@@ -1,5 +1,0 @@
-pendelum_sim
-/home/abraham/Documents/Semestre_8/Challenge-It/devel/.private/pendelum_sim/cmake.lock /home/abraham/Documents/Semestre_8/Challenge-It/devel/./cmake.lock
-/home/abraham/Documents/Semestre_8/Challenge-It/devel/.private/pendelum_sim/share/pendelum_sim/cmake/pendelum_simConfig-version.cmake /home/abraham/Documents/Semestre_8/Challenge-It/devel/share/pendelum_sim/cmake/pendelum_simConfig-version.cmake
-/home/abraham/Documents/Semestre_8/Challenge-It/devel/.private/pendelum_sim/share/pendelum_sim/cmake/pendelum_simConfig.cmake /home/abraham/Documents/Semestre_8/Challenge-It/devel/share/pendelum_sim/cmake/pendelum_simConfig.cmake
-/home/abraham/Documents/Semestre_8/Challenge-It/devel/.private/pendelum_sim/lib/pkgconfig/pendelum_sim.pc /home/abraham/Documents/Semestre_8/Challenge-It/devel/lib/pkgconfig/pendelum_sim.pc
