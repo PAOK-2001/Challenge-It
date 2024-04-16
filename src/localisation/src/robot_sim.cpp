@@ -15,8 +15,9 @@ void receive_cmd_vel(const geometry_msgs::Twist &cmd_vel){
     isReceiving = true;
 }
 
-
-
+void get_wheel_speed(geometry_msgs::Twist cmd_vel, float &right_vel, float &left_vel){
+    
+}
 
 int main(int argc, char *argv[]) {
     ros::init(argc, argv, "robot_sim");
