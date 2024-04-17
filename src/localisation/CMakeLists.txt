@@ -8,12 +8,13 @@ project(localisation)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  geometry_msgs
   roscpp
   rospy
-  sensor_msgs
-  std_msgs
   tf2_ros
+  std_msgs
+  nav_msgs
+  sensor_msgs
+  geometry_msgs
   tf_conversions
 )
 
@@ -126,6 +127,12 @@ include_directories(
 
 add_executable(robot_sim src/robot_sim.cpp)
 target_link_libraries(robot_sim ${catkin_LIBRARIES})
+
+add_executable(dead_reckoning src/dead_reckoning.cpp)
+target_link_libraries(dead_reckoning ${catkin_LIBRARIES})
+
+add_executable(joint_state_publisher src/joint_state_publisher.cpp)
+target_link_libraries(joint_state_publisher ${catkin_LIBRARIES})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

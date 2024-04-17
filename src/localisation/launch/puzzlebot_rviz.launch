@@ -9,9 +9,12 @@
         <param name="robot_description" command="cat $(arg puzzlebot_sim_model)" />
 
         <node pkg="robot_state_publisher" type="robot_state_publisher" name="simulated_state_publisher" output="screen"/>
+        <node pkg="localisation" type="joint_state_publisher" name="joint_state_publisher" output="screen"/>
 
         <arg name="rvizconfig" default="$(find localisation)/rviz/puzzlebot_config.rviz" />
         <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
         <node name="sim" pkg="localisation" type="robot_sim" />
+        <node name="localisation" pkg="localisation" type="dead_reckoning" />
+
 
 </launch>
