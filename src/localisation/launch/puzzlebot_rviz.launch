@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <launch>
+        <rosparam file = "$(find localisation)/config/robot_params.yaml" command = "load"/>
+
 
         <node pkg="tf2_ros" type="static_transform_publisher" name="map_joint" args="odomPose_x  odomPose_y  odomPose_z  odomPose_roll  odomPose_pitch  odomPose_yaw   map   odom"/>
 
@@ -10,5 +12,6 @@
 
         <arg name="rvizconfig" default="$(find localisation)/rviz/puzzlebot_config.rviz" />
         <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+        <node name="sim" pkg="localisation" type="robot_sim" />
 
 </launch>

@@ -124,6 +124,9 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
+add_executable(robot_sim src/robot_sim.cpp)
+target_link_libraries(robot_sim ${catkin_LIBRARIES})
+
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/localisation.cpp
