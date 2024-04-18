@@ -53,7 +53,8 @@ int main(int argc, char *argv[]){
         robot_y = robot_y + ((velocity * sin(robot_theta))*dt);
         robot_theta = robot_theta + (angular_vel * dt);
         
-        if(robot_theta < 0) robot_theta = robot_theta + 2*M_PI;
+        if(robot_theta >  M_PI) robot_theta = robot_theta - 2*M_PI;
+        else if(robot_theta < - M_PI) robot_theta = robot_theta + 2*M_PI;
 
         odom.pose.pose.position.x = robot_x;
         odom.pose.pose.position.y = robot_y;

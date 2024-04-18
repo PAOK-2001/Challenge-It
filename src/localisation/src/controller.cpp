@@ -65,15 +65,12 @@ int main(int argc, char *argv[]){
                 while (distance > THRESHOLD){
                     chrono::steady_clock::time_point t = chrono::steady_clock::now();
                     rate.sleep();
-                    desired_angle = atan2(-(desired_y-robot_y),(desired_x - robot_x));
+                    desired_angle = atan2((desired_y-robot_y),(desired_x - robot_x));
                     distance = sqrt(pow(desired_y-robot_y,2)+pow(desired_x-robot_x,2));
-                    float angle_error = (robot_orientation - desired_angle);
+                    float angle_error = (desired_angle - robot_orientation);
 
                     if(angle_error >  M_PI) angle_error = angle_error - 2*M_PI;
                     else if(angle_error < - M_PI) angle_error = angle_error + 2*M_PI;
-
-                    string msg = "Angle error" + to_string(angle_error);
-                    ROS_INFO(msg.c_str());
 
                     float angular_velocity = kpr*angle_error;
                     if(angular_velocity > angular_max) angular_velocity = angular_max;
