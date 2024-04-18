@@ -28,7 +28,7 @@ void receive_odom(const nav_msgs::Odometry &received_odom){
 }
 
 int main(int argc, char ** argv){
-    ros::init(argc, argv, "Joint_states");  
+    ros::init(argc, argv, "joint_states");  
     ros::NodeHandle handler;
     ros::Rate rate(nodeRate);
 

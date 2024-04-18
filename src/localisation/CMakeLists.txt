@@ -134,6 +134,12 @@ target_link_libraries(dead_reckoning ${catkin_LIBRARIES})
 add_executable(joint_state_publisher src/joint_state_publisher.cpp)
 target_link_libraries(joint_state_publisher ${catkin_LIBRARIES})
 
+add_executable(path_generator src/path_generator.cpp)
+target_link_libraries(path_generator ${catkin_LIBRARIES})
+
+add_executable(controller src/controller.cpp)
+target_link_libraries(controller ${catkin_LIBRARIES})
+
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/localisation.cpp

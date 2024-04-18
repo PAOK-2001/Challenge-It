@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
     float robot_theta = 0;
     float dt = 0;
 
-     while(ros::ok){
+    while(ros::ok){
         chrono::steady_clock::time_point t = chrono::steady_clock::now();
 
         velocity = _WHEELRADIUS*(right_speed + left_speed)/2;
@@ -51,7 +51,9 @@ int main(int argc, char *argv[]){
 
         robot_x = robot_x + ((velocity * cos(robot_theta))*dt);
         robot_y = robot_y + ((velocity * sin(robot_theta))*dt);
-        robot_theta =robot_theta + (angular_vel * dt);
+        robot_theta = robot_theta + (angular_vel * dt);
+        
+        if(robot_theta < 0) robot_theta = robot_theta + 2*M_PI;
 
         odom.pose.pose.position.x = robot_x;
         odom.pose.pose.position.y = robot_y;
