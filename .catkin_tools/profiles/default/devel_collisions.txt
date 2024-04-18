@@ -1,3 +1,0 @@
-/home/pablo/Challenge-It/devel/./cmake.lock 78
-/home/jairjim/Documents/Challenge-It/devel/./cmake.lock 4
-/home/abraham/Documents/Semestre_8/Challenge-It/devel/./cmake.lock 31
